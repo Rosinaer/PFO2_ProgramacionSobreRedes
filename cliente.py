@@ -25,6 +25,11 @@ def listar_tareas(usuario):
     resp = requests.post(BASE + "/listar_tareas", json={"usuario": usuario})
     print("Tareas:", resp.json())
 
+def ver_html():
+    resp = requests.get(BASE + "/tareas")
+    print("Respuesta HTML:")
+    print(resp.text)    
+
 def main():
     usuario_actual = None
     while True:
@@ -32,7 +37,8 @@ def main():
         print("2) Login")
         print("3) Agregar tarea")
         print("4) Listar tareas")
-        print("5) Salir")
+        print("5) Ver HTML de /tareas")
+        print("6) Salir")
         opcion = input("> ")
         if opcion == "1":
             registrar_usuario()
@@ -49,6 +55,8 @@ def main():
             else:
                 print("Debes iniciar sesión primero.")
         elif opcion == "5":
+            ver_html()       
+        elif opcion == "6":
             break
         else:
             print("Opción inválida.")
